@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Nova solicitação{% endblock %}
+{% block content %}
+<header class="cabecalho"><div><h1>Nova solicitação</h1><p>Campos com * são obrigatórios.</p></div></header>
+<section class="cartao">
+  <form method="post" class="formulario">{% csrf_token %}
+    {% for campo in form %}{% include "partials/campo.html" with campo=campo %}{% endfor %}
+    <button type="submit" class="botao botao-principal">Enviar para análise</button>
+  </form>
+</section>
+{% endblock %}

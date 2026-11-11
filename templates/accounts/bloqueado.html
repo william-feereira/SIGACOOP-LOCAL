@@ -1,0 +1,8 @@
+{% extends "accounts/_layout_acesso.html" %}
+{% block title %}Acesso bloqueado{% endblock %}
+{% block content %}
+<h1>Acesso bloqueado temporariamente</h1>
+<p>Houve muitas tentativas de entrada com senha incorreta. Aguarde 15 minutos e tente de novo.</p>
+<p>Se esqueceu a senha, fale com o administrador do SIGA.</p>
+<a class="botao botao-secundario" href="{% url 'accounts:login' %}">Voltar para a entrada</a>
+{% endblock %}

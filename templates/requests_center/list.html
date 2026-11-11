@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Solicitações{% endblock %}
+{% block content %}
+<header class="cabecalho">
+  <div><h1>Central de solicitações</h1><p>Veículos, compras, serviços, manutenção, viagens e ativos.</p></div>
+  <a class="botao botao-principal" href="{% url 'requests_center:create' %}">Nova solicitação</a>
+</header>
+<section class="cartao">
+  <ul class="lista">{% for x in items %}
+    <li><a href="{% url 'requests_center:detail' x.pk %}"><span><b>{{ x.protocol }}</b> · {{ x.title }}<small>{{ x.beneficiary_unit }}</small></span><span class="selo">{{ x.get_status_display }}</span></a></li>{% empty %}
+    <li class="vazio">Nenhuma solicitação.</li>{% endfor %}
+  </ul>
+</section>
+{% endblock %}

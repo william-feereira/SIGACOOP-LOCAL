@@ -1,0 +1,18 @@
+{% load static %}<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>{% block title %}Acesso{% endblock %} | SIGA Coop</title>
+  <link rel="icon" href="{% static 'img/siga-icon.png' %}">
+  <link rel="stylesheet" href="{% static 'css/siga.css' %}">
+</head>
+<body class="acesso">
+  <section class="acesso-marca">
+    <p class="acesso-logo"><img src="{% static 'img/siga-icon.png' %}" alt="" width="56" height="56"><span><b>SIGA</b> Coop</span></p>
+    <p class="acesso-lema">Sistema Integrado de Gestão Administrativa</p>
+  </section>
+  <main class="acesso-cartao">{% block content %}{% endblock %}</main>
+</body>
+</html>

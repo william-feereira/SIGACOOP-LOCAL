@@ -1,0 +1,6 @@
+{% load siga %}<nav class="menu">{% for secao, itens in menu %}
+  <p class="menu-secao">{{ secao }}</p>
+  <ul>{% for item in itens %}
+    <li><a href="{{ item.caminho }}"{% if item.ativo %} aria-current="page"{% endif %}>{% icone item.icone %}<span>{{ item.rotulo }}</span></a></li>{% endfor %}
+  </ul>{% endfor %}
+</nav>

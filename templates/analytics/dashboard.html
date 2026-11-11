@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Indicadores{% endblock %}
+{% block content %}
+<header class="cabecalho"><div><h1>Indicadores</h1><p>Os números consideram só as unidades que você pode ver.</p></div></header>
+<div class="indicadores">
+  <article class="cartao"><p class="indicador-rotulo">Solicitações</p><p class="indicador-valor">{{ total_requests }}</p></article>
+  <article class="cartao"><p class="indicador-rotulo">Em andamento</p><p class="indicador-valor">{{ pending }}</p></article>
+  <article class="cartao"><p class="indicador-rotulo">Valor estimado</p><p class="indicador-valor">R$ {{ estimated|floatformat:"2g" }}</p></article>
+  <article class="cartao"><p class="indicador-rotulo">Reembolsos de viagens</p><p class="indicador-valor">R$ {{ travel_total|floatformat:"2g" }}</p></article>
+</div>
+{% endblock %}

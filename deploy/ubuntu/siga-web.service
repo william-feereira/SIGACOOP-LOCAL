@@ -1,0 +1,26 @@
+# /etc/systemd/system/siga-web.service — Django (Gunicorn) atrás do Nginx
+[Unit]
+Description=SIGA Coop (Django/Gunicorn)
+After=network.target postgresql.service
+Requires=postgresql.service
+
+[Service]
+Type=notify
+User=siga
+Group=siga
+WorkingDirectory=/opt/siga-coop
+EnvironmentFile=/etc/siga-coop/siga.env
+Environment=DJANGO_SETTINGS_MODULE=config.settings.production
+ExecStartPre=/opt/siga-coop/.venv/bin/python manage.py migrate --noinput
+ExecStartPre=/opt/siga-coop/.venv/bin/python manage.py collectstatic --noinput
+ExecStart=/opt/siga-coop/.venv/bin/gunicorn config.wsgi:application --bind 127.0.0.1:8000 --workers 3 --timeout 60
+Restart=on-failure
+# Menor privilégio
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/siga-coop/private_media /opt/siga-coop/staticfiles
+
+[Install]
+WantedBy=multi-user.target

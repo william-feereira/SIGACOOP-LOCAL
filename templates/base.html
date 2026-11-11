@@ -1,0 +1,37 @@
+{% load static siga %}<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>{% block title %}SIGA Coop{% endblock %} | SIGA Coop</title>
+  <link rel="icon" href="{% static 'img/siga-icon.png' %}">
+  <link rel="stylesheet" href="{% static 'css/siga.css' %}">
+</head>
+<body>
+<a class="pular" href="#conteudo">Ir para o conteúdo</a>
+<div class="app">
+  <aside class="lateral" aria-label="Menu principal">
+    <a class="marca" href="/"><img src="{% static 'img/siga-icon.png' %}" alt="" width="36" height="36"><span><b>SIGA</b> Coop</span></a>
+    {% if user.is_authenticated %}
+    <details class="menu-movel">
+      <summary>{% icone "menu" %}<span>Menu</span></summary>
+      {% include "partials/menu.html" %}
+    </details>
+    <div class="menu-fixo">{% include "partials/menu.html" %}</div>
+    <div class="usuario">
+      <span class="usuario-nome">{{ user.get_full_name|default:user.username }}<small>{{ perfis_usuario|join:", "|default:"Sem perfil" }}</small></span>
+      <form method="post" action="{% url 'accounts:logout' %}">{% csrf_token %}
+        <button type="submit" class="botao-icone" aria-label="Sair do SIGA">{% icone "log-out" %}</button>
+      </form>
+    </div>
+    {% endif %}
+  </aside>
+  <main id="conteudo" tabindex="-1">
+    {% for m in messages %}<div class="aviso aviso-{{ m.tags|default:'info' }}" role="status">{{ m }}</div>{% endfor %}
+    {% block content %}{% endblock %}
+    <footer class="rodape"><a href="{% url 'core:privacy' %}">Privacidade</a> · <a href="{% url 'core:terms' %}">Termos de uso</a></footer>
+  </main>
+</div>
+</body>
+</html>

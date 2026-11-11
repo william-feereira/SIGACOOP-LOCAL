@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Visão geral{% endblock %}
+{% block content %}
+<header class="cabecalho">
+  <div><h1>Visão geral</h1><p>Olá, {{ user.first_name|default:user.username }}. Aqui está o que precisa da sua atenção.</p></div>
+  <a class="botao botao-principal" href="{% url 'requests_center:create' %}">Nova solicitação</a>
+</header>
+<div class="indicadores">
+  <article class="cartao"><p class="indicador-rotulo">Solicitações em andamento</p><p class="indicador-valor">{{ open_count }}</p></article>
+</div>
+<section class="cartao">
+  <h2>Solicitações recentes</h2>
+  <ul class="lista">{% for x in recent %}
+    <li><a href="{% url 'requests_center:detail' x.pk %}"><span><b>{{ x.protocol }}</b> · {{ x.title }}<small>{{ x.beneficiary_unit }}</small></span><span class="selo">{{ x.get_status_display }}</span></a></li>{% empty %}
+    <li class="vazio">Nenhuma solicitação ainda. Use "Nova solicitação" para abrir a primeira.</li>{% endfor %}
+  </ul>
+</section>
+{% endblock %}

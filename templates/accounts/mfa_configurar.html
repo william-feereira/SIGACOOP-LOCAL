@@ -1,0 +1,19 @@
+{% extends "accounts/_layout_acesso.html" %}
+{% load siga %}
+{% block title %}Ativar verificação em duas etapas{% endblock %}
+{% block content %}
+<p class="etapa">Etapa 1 de 2</p>
+<h1>Ative a verificação em duas etapas</h1>
+<p>Seu perfil exige um código do celular além da senha.</p>
+<ol class="passos">
+  <li>Abra um aplicativo autenticador (Microsoft Authenticator, Google Authenticator ou similar).</li>
+  <li>Leia o QR code abaixo ou digite a chave manualmente.</li>
+  <li>Digite o código de 6 números que aparecer.</li>
+</ol>
+<figure class="qr">{{ qr_svg }}<figcaption>Chave manual: <code>{{ segredo }}</code></figcaption></figure>
+<form method="post" class="formulario">{% csrf_token %}
+  {% include "partials/campo.html" with campo=form.codigo %}
+  <input type="hidden" name="next" value="{{ next }}">
+  <button type="submit" class="botao botao-principal botao-largo">Ativar e continuar</button>
+</form>
+{% endblock %}

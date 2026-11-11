@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{{ item.protocol }}{% endblock %}
+{% block content %}
+<header class="cabecalho">
+  <div><p class="etapa">{{ item.protocol }}</p><h1>{{ item.title }}</h1></div>
+  <span class="selo">{{ item.get_status_display }}</span>
+</header>
+<section class="cartao">
+  <h2>Detalhes</h2>
+  <dl class="detalhes">
+    <dt>Categoria</dt><dd>{{ item.get_category_display }}</dd>
+    <dt>Unidade</dt><dd>{{ item.beneficiary_unit }}</dd>
+    <dt>Descrição</dt><dd>{{ item.description|linebreaksbr }}</dd>
+    <dt>Justificativa</dt><dd>{{ item.justification|default:"Não informada"|linebreaksbr }}</dd>
+  </dl>
+</section>
+<section class="cartao">
+  <h2>Linha do tempo</h2>
+  <ul class="lista">{% for e in item.events.all %}
+    <li><span>{{ e.action }}<small>{{ e.actor }} · {{ e.created_at|date:"d/m/Y H:i" }}</small></span>{% if e.comment %}<span>{{ e.comment }}</span>{% endif %}</li>{% empty %}
+    <li class="vazio">Sem movimentações.</li>{% endfor %}
+  </ul>
+</section>
+{% endblock %}

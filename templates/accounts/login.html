@@ -1,0 +1,18 @@
+{% extends "accounts/_layout_acesso.html" %}
+{% block title %}Entrar{% endblock %}
+{% block content %}
+<h1>Entrar no SIGA</h1>
+<form method="post" class="formulario" novalidate>{% csrf_token %}
+  {% if form.non_field_errors %}<div class="aviso aviso-error" role="alert">Usuário ou senha incorretos. Após 5 tentativas, o acesso fica bloqueado por 15 minutos.</div>{% endif %}
+  <div class="campo">
+    <label for="{{ form.username.id_for_label }}">Usuário</label>
+    <input type="text" name="username" id="{{ form.username.id_for_label }}" autocomplete="username" autocapitalize="none" required autofocus value="{{ form.username.value|default:'' }}">
+  </div>
+  <div class="campo">
+    <label for="{{ form.password.id_for_label }}">Senha</label>
+    <input type="password" name="password" id="{{ form.password.id_for_label }}" autocomplete="current-password" required>
+  </div>
+  <input type="hidden" name="next" value="{{ next }}">
+  <button type="submit" class="botao botao-principal botao-largo">Entrar</button>
+</form>
+{% endblock %}

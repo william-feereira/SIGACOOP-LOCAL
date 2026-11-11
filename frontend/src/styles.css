@@ -1,0 +1,164 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-brand-teal: var(--brand-teal);
+  --color-brand-teal-ink: var(--brand-teal-ink);
+  --color-brand-green: var(--brand-green);
+  --color-brand-lime: var(--brand-lime);
+  --color-brand-petrol: var(--brand-petrol);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.75rem;
+  /* Marca SIGA Coop */
+  --brand-petrol: #0b3b47;
+  --brand-teal: #00ae9d;
+  --brand-teal-ink: #00665e; /* para texto sobre fundos claros, contraste melhor */
+  --brand-green: #7db61c;
+  --brand-lime: #c9d200;
+
+  --background: oklch(0.975 0.006 180);
+  --foreground: oklch(0.24 0.03 200);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.24 0.03 200);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.24 0.03 200);
+  --primary: var(--brand-petrol);
+  --primary-foreground: oklch(0.98 0.01 180);
+  --secondary: oklch(0.94 0.02 180);
+  --secondary-foreground: var(--brand-petrol);
+  --muted: oklch(0.95 0.01 180);
+  --muted-foreground: oklch(0.5 0.025 200);
+  --accent: oklch(0.93 0.045 178);
+  --accent-foreground: oklch(0.3 0.06 200);
+  --destructive: #e53935;
+  --destructive-foreground: oklch(0.98 0 0);
+  --success: #2e7d32;
+  --success-foreground: oklch(0.99 0 0);
+  --warning: #ed8a16;
+  --warning-foreground: oklch(0.45 0.12 55);
+  --info: #1976d2;
+  --border: oklch(0.9 0.015 185);
+  --input: oklch(0.88 0.018 185);
+  --ring: var(--brand-teal);
+  --chart-1: var(--brand-teal);
+  --chart-2: var(--brand-petrol);
+  --chart-3: var(--brand-green);
+  --chart-4: var(--brand-lime);
+  --chart-5: oklch(0.6 0.13 230);
+  --sidebar: #0b3b47;
+  --sidebar-foreground: oklch(0.9 0.02 185);
+  --sidebar-primary: var(--brand-teal);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.36 0.05 210);
+  --sidebar-accent-foreground: oklch(0.99 0 0);
+  --sidebar-border: oklch(0.36 0.04 210);
+  --sidebar-ring: var(--brand-teal);
+
+  --shadow-card: 0 1px 2px oklch(0.3 0.05 200 / 0.05), 0 8px 24px -12px oklch(0.3 0.05 200 / 0.18);
+  --shadow-elevated: 0 20px 50px -20px oklch(0.25 0.06 210 / 0.45);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+  }
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+@utility shadow-elevated {
+  box-shadow: var(--shadow-elevated);
+}
+
+/* Acessibilidade: navegação por teclado e respeito a preferências de movimento. */
+@layer base {
+  :where(a, button, input, select, textarea, [role="button"]):focus-visible {
+    outline: 3px solid var(--brand-petrol);
+    outline-offset: 3px;
+  }
+  :where(button, select, input[type="checkbox"], input[type="radio"]) {
+    accent-color: var(--brand-petrol);
+  }
+}
+.skip-to-content {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-180%);
+  background: #ffffff;
+  color: #0b3b47;
+  border: 2px solid #0b3b47;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+}
+.skip-to-content:focus { transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

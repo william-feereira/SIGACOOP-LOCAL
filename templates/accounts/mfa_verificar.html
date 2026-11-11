@@ -1,0 +1,13 @@
+{% extends "accounts/_layout_acesso.html" %}
+{% block title %}Verificação em duas etapas{% endblock %}
+{% block content %}
+<p class="etapa">Etapa 2 de 2</p>
+<h1>Digite o código do aplicativo</h1>
+<p>Abra o aplicativo autenticador e digite o código de 6 números do SIGA Coop.</p>
+<form method="post" class="formulario">{% csrf_token %}
+  {% include "partials/campo.html" with campo=form.codigo %}
+  <input type="hidden" name="next" value="{{ next }}">
+  <button type="submit" class="botao botao-principal botao-largo">Confirmar</button>
+</form>
+<form method="post" action="{% url 'accounts:logout' %}" class="acesso-sair">{% csrf_token %}<button type="submit" class="botao-link">Sair e entrar com outra conta</button></form>
+{% endblock %}

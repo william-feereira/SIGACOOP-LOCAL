@@ -1,0 +1,8 @@
+[Unit]
+Description=Backup do banco do SIGA Coop
+
+[Service]
+Type=oneshot
+User=postgres
+EnvironmentFile=-/etc/siga-coop/backup.env
+ExecStart=/opt/siga-coop/deploy/ubuntu/backup-postgres.sh

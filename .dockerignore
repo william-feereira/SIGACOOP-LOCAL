@@ -1,0 +1,9 @@
+.git
+.env
+**/node_modules
+frontend/dist
+staticfiles
+private_media
+backups
+**/__pycache__
+*.sqlite3
